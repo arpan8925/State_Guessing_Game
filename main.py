@@ -43,16 +43,14 @@ while game_is_on:
     if answer.lower() == "exit":
         break
 
-    for state_name in state_dict:
-        if answer.lower() == state_name.lower():
-            state_data = states[states["state"] == state_name]
-            score += 1
-            state_x = state_data["x"].values[0]
-            state_y = state_data["y"].values[0]
-            state_selector(state_x, state_y, answer)
-            update_score()
-            state_dict.remove(state_name)  # Remove the guessed state from the list
-            break  # Exit the loop once a correct guess is made
+    state_data = next((states[states["state"] == state_name] for state_name in state_dict if answer.lower() == state_name.lower()), None)
+    if state_data is not None:
+        score += 1
+        state_x, state_y = state_data.iloc[0]["x"], state_data.iloc[0]["y"]
+        state_selector(state_x, state_y, answer)
+        update_score()
+        state_dict = [state for state in state_dict if state.lower() != answer.lower()]
+    # Exit the loop once a correct guess is made
 
     if score == total_state:
         screen.title("Congratulations! You guessed all the states!")
