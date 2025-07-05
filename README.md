@@ -52,6 +52,7 @@ python main.py
 
 ## Improvements
 
--   Add a list of the states already guessed
--   Keep track of the states missed and provide a way to learn them at the end of the game.
--   Implement a graphical user interface (GUI) for a better user experience.
+* [ ] Add a list of the states already guessed
+* [ ] Keep track of the states missed and provide a way to learn them at the end of the game
+* [ ] Implement a graphical user interface (GUI) for a better user experience
+* [ ] Add sound effects and animations to enhance the game's interactivity
